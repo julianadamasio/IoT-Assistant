@@ -1,0 +1,26 @@
+{
+  "name": "webhook-echo-sample",
+  "version": "1.0.0",
+  "description": "Webhook echo sample",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "author": "Sunil Syal",
+  "dependencies": {
+    "body-parser": "^1.15.0",
+    "express": "^4.13.4",
+    "rss-parser": "^2.10.1",
+    "actions-on-google": "^1.0.9"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/leafarmd/Webhook-and-API.AI-Echo-Sample.git"
+  },
+  "keywords": [],
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/leafarmd/Webhook-and-API.AI-Echo-Sample/issues"
+  },
+  "homepage": "https://github.com/leafarmd/Webhook-and-API.AI-Echo-Sample#readme"
+}

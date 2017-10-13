@@ -19,106 +19,78 @@ restService.post('/echo', function(req, res) {
   var song = "talk";
   var ubilab = "ubilab";
 
-  //news sections
-  var news = "news";
-  var science = "science";
-  var economy = "economy";
-  var education = "education";
-  var world = "world";
-  var music = "music";
-  var politics = "politics";
-  var technology = "technology";
-  var sports = "sports";
+  //palavras globais
+  var events = "events";
+  var pucrs = "pucrs";
+  var building = "building";
+  var smartcity = "smart city";
 
-  //regions
-  var sp = "sao paulo";
-  var rj = "rio de janeiro";
-  var rs = "rio grande do sul";
+  //prédios
+  var p32 = "thirty-two";
+  var p30 = "thirty";
 
+  //biblioteca
+  var title = "title";
+  var book1 = "designing interfaces";
+  var book2 = "scrum";
+  var keyWord = "software development";
 
-    if(message.indexOf("location") > -1) {
-      let preciseLocationPermission = assistant.SupportedPermissions.NAME;
-      assistant.askForPermissions('To address you by name and know your location',[preciseLocationPermission]);
-      //assistant.ask(assistant.getDeviceLocation().coordinates.latitude);
-      //let displayName = app.getUserName().displayName;
-    }else
+    // if(message.indexOf("location") > -1) {
+    //   let preciseLocationPermission = assistant.SupportedPermissions.NAME;
+    //   assistant.askForPermissions('To address you by name and know your location',[preciseLocationPermission]);
+    //   //assistant.ask(assistant.getDeviceLocation().coordinates.latitude);
+    //   //let displayName = app.getUserName().displayName;
+    // }else
 
-    if(message.indexOf("next") > -1) {
-      pos++;
-      assistant.ask(""+pos);
-    }else
+    // if(message.indexOf("next") > -1) {
+    //   pos++;
+    //   assistant.ask(""+pos);
+    // }else
 
-    if(message.indexOf(ubilab) > -1) {
-      sendResponse("Ubilab is a place for academic research which connects theoretical references with their practical application. The lab was created in the Graduate Program of Communications of the Pontifical Catholic University of Rio Grande do Sul (PUCRS) to create a multidisciplinary dialogue to research new perspectives of the Information Society.");
+    //EVENTOS
+    if(message.indexOf(smartcity) > -1) {
+      sendResponse("Smart cities are projects in which a given urban space is the scene of intensive experiences of communication and information technologies sensitive to the Internet of Things context, of urban management and social action driven by data.");
     }else
 
     if(message.indexOf(song) > -1) {
       sendResponse('<speak> playing audio news <audio src="https://leafarmd.000webhostapp.com/news2.mp3"></audio></speak>')
     }else
 
-    //news sections
-
-    if(message.indexOf(science) > -1) {
-      parseFromRSS('http://g1.globo.com/dynamo/ciencia-e-saude/rss2.xml');
+    //Sessão de eventos
+    if(message.indexOf(events) > -1) {
+        if(message.indexOf(building) > -1) {
+              if(message.indexOf(p30) > -1) {
+                  sendResponse("<speak>There will be an event called Electrical Engineering, on October 16, 2017, at 5:30 p.m. in room 201 of building 30, second floor.</speak>");
+              }else if(message.indexOf(p32) > -1) {
+                  sendResponse("<speak>There will be an event called Smart Cities and IoT, on October 16, 2017, at 6:00 pm in the ground floor auditorium of building 32.</speak>");
+              }else
+                  sendResponse("<speak>No events were identified in the building mentioned.</speak>");
+        }else
+        sendResponse("<speak>There will be an event called Entrepreneurship in the academic world, on October 16, 2017, at 7:00 pm in the auditorium of building 15, second floor. There will be an event called Legislation and Philosophy, on October 16, 2017, at 4:00 p.m. in Room 303 of Building 11 on the third floor.</speak>");
     }else
 
-    if(message.indexOf(economy) > -1) {
-      parseFromRSS('http://g1.globo.com/dynamo/economia/rss2.xml');
+    //BIBLIOTECA
+    if(message.indexOf(title) > -1) {
+        if(message.indexOf(book1) > -1) { //book1 = "designing interfaces";
+          sendResponse("<speak>The book designing interfaces is available for lease for 7 days. Its location is on the 3rd floor, shelf number 16.</speak>");
+        }else if(message.indexOf(book2) > -1) { //book2 = "scrum";
+          sendResponse("<speak>This book is not available. Borrowed until Oct 16, 2017 22:50.</speak>");
     }else
 
-    if(message.indexOf(education) > -1) {
-      parseFromRSS('http://g1.globo.com/dynamo/educacao/rss2.xml');
+    if(message.indexOf(keyWord) > -1) {
+      sendResponse("<speak>The books: Software development rhythms, Software development failures, Running an agile software development project and Using aspect-oriented programming for trustworthy software development are the results returned from your search.</speak>");
     }else
 
-    if(message.indexOf(music) > -1) {
-      parseFromRSS('http://g1.globo.com/dynamo/musica/rss2.xml');
-    }else
-
-    if(message.indexOf(science) > -1) {
-      parseFromRSS('http://g1.globo.com/dynamo/ciencia-e-saude/rss2.xml');
-    }else
-
-    if(message.indexOf(politics) > -1) {
-      parseFromRSS('http://g1.globo.com/dynamo/politica/mensalao/rss2.xml');
-    }else
-
-    if(message.indexOf(technology) > -1) {
-      parseFromRSS('http://g1.globo.com/dynamo/tecnologia/rss2.xml');
-    }else
-
-    if(message.indexOf(sports) > -1) {
-      parseFromRSS('http://globoesporte.globo.com/servico/semantica/editorias/plantao/feed.rss');
-    }else
-
-    if(message.indexOf(sp) > -1) {
-      parseFromRSS('http://g1.globo.com/dynamo/sao-paulo/rss2.xml');
-    }else
-
-    if(message.indexOf(rj) > -1) {
-      parseFromRSS('http://g1.globo.com/dynamo/rio-de-janeiro/rss2.xml');
-    }else
-
-    if(message.indexOf(rs) > -1) {
-      parseFromRSS('http://g1.globo.com/dynamo/rs/rio-grande-do-sul/rss2.xml');
-    }else
-
-    if(message.indexOf(news) > -1) {
-      parseFromRSS('http://g1.globo.com/dynamo/rss2.xml');
-    }else{
-      sendResponse("<speak>sorry, i can't help you with that, but you can ask me the news or about sports.</speak>");
-    }
-
-
-    function parseFromRSS(url){
-      var parser = require('rss-parser');
-      parser.parseURL(url, function(err, parsed) {
-        var speechNews = "";
-        for(var i = 0; i < 4;i++){
-        speechNews = parsed.feed.entries[i].title + ".\n" + speechNews;
-        }
-        sendResponse("<speak>" + speechNews + "</speak>");
-      });
-    }
+    // function parseFromRSS(url){
+    //   var parser = require('rss-parser');
+    //   parser.parseURL(url, function(err, parsed) {
+    //     var speechNews = "";
+    //     for(var i = 0; i < 4;i++){
+    //     speechNews = parsed.feed.entries[i].title + ".\n" + speechNews;
+    //     }
+    //     sendResponse("<speak>" + speechNews + "</speak>");
+    //   });
+    // }
 
     function sendResponse(msg) {
       assistant.ask(msg);

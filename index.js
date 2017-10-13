@@ -17,7 +17,6 @@ restService.post('/echo', function(req, res) {
   const assistant = new Assistant({ request: req, response: res });
   var message = assistant.getArgument('echoText').toLowerCase();
   var song = "talk";
-  var ubilab = "ubilab";
 
   //palavras globais
   var events = "events";
@@ -34,18 +33,6 @@ restService.post('/echo', function(req, res) {
   var book1 = "designing interfaces";
   var book2 = "scrum";
   var keyWord = "software development";
-
-    // if(message.indexOf("location") > -1) {
-    //   let preciseLocationPermission = assistant.SupportedPermissions.NAME;
-    //   assistant.askForPermissions('To address you by name and know your location',[preciseLocationPermission]);
-    //   //assistant.ask(assistant.getDeviceLocation().coordinates.latitude);
-    //   //let displayName = app.getUserName().displayName;
-    // }else
-
-    // if(message.indexOf("next") > -1) {
-    //   pos++;
-    //   assistant.ask(""+pos);
-    // }else
 
     //EVENTOS
     if(message.indexOf(smartcity) > -1) {
@@ -80,17 +67,6 @@ restService.post('/echo', function(req, res) {
     if(message.indexOf(keyWord) > -1) {
       sendResponse("<speak>The books: Software development rhythms, Software development failures, Running an agile software development project and Using aspect-oriented programming for trustworthy software development are the results returned from your search.</speak>");
     }else
-
-    // function parseFromRSS(url){
-    //   var parser = require('rss-parser');
-    //   parser.parseURL(url, function(err, parsed) {
-    //     var speechNews = "";
-    //     for(var i = 0; i < 4;i++){
-    //     speechNews = parsed.feed.entries[i].title + ".\n" + speechNews;
-    //     }
-    //     sendResponse("<speak>" + speechNews + "</speak>");
-    //   });
-    // }
 
     function sendResponse(msg) {
       assistant.ask(msg);

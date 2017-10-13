@@ -47,13 +47,13 @@ restService.post('/echo', function(req, res) {
     if(message.indexOf(events) > -1) {
         if(message.indexOf(building) > -1) {
               if(message.indexOf(p30) > -1) {
-                  sendResponse("<speak>There will be an event called Electrical Engineering, on October 16, 2017, at 5:30 p.m. in room 201 of building 30, second floor.</speak>");
+                sendResponse("<speak>There will be an event called Electrical Engineering, on October 16, 2017, at 5:30 p.m. in room 201 of building 30, second floor.</speak>");
               }else if(message.indexOf(p32) > -1) {
-                  sendResponse("<speak>There will be an event called Smart Cities and IoT, on October 16, 2017, at 6:00 pm in the ground floor auditorium of building 32.</speak>");
+                sendResponse("<speak>There will be an event called Smart Cities and IoT, on October 16, 2017, at 6:00 pm in the ground floor auditorium of building 32.</speak>");
               }else
-                  sendResponse("<speak>No events were identified in the building mentioned.</speak>");
+                sendResponse("<speak>No events were identified in the building mentioned.</speak>");
         }else
-        sendResponse("<speak>There will be an event called Entrepreneurship in the academic world, on October 16, 2017, at 7:00 pm in the auditorium of building 15, second floor. There will be an event called Legislation and Philosophy, on October 16, 2017, at 4:00 p.m. in Room 303 of Building 11 on the third floor.</speak>");
+          sendResponse("<speak>There will be an event called Entrepreneurship in the academic world, on October 16, 2017, at 7:00 pm in the auditorium of building 15, second floor. There will be an event called Legislation and Philosophy, on October 16, 2017, at 4:00 p.m. in Room 303 of Building 11 on the third floor.</speak>");
     }else
 
     //BIBLIOTECA
@@ -68,6 +68,7 @@ restService.post('/echo', function(req, res) {
       sendResponse("<speak>The books: Software development rhythms, Software development failures, Running an agile software development project and Using aspect-oriented programming for trustworthy software development are the results returned from your search.</speak>");
     }else
 
+    //Função de envio de mensagem
     function sendResponse(msg) {
       assistant.ask(msg);
     }

@@ -17,58 +17,143 @@ restService.post('/echo', function(req, res) {
   const assistant = new Assistant({ request: req, response: res });
   var message = assistant.getArgument('echoText').toLowerCase();
   var song = "talk";
+  var ubilab = "ubilab";
+  var title = " ";
+  var next = "next";
+  var back = "back";
+  //news sections
 
-  //palavras globais
-  // var events = "events";
-  // var pucrs = "pucrs";
-  // var building = "building";
-  var smartcity = "smart city";
+  var news = "news";
+  var science = "science";
+  var economy = "economy";
+  var education = "education";
+  var world = "world";
+  var music = "music";
+  var politics = "politics";
+  var technology = "technology";
+  var sports = "sports";
+  var headlines = "headlines";
+  //regions
+  var sp = "sao paulo";
+  var rj = "rio de janeiro";
+  var rs = "rio grande do sul";
+  var newsArr = ["news", "science", "economy", "education", "music", "politics", "technology", "sports"];
 
-  //prédios
-  // var p32 = "thirty-two";
-  // var p30 = "thirty";
-
-  //biblioteca
-  // var title = "title";
-  // var book1 = "designing interfaces";
-  // var book2 = "scrum";
-  // var keyWord = "software development";
-
-    //EVENTOS
-    if(message.indexOf(smartcity) > -1) {
-      sendResponse("Smart cities are projects in which a given urban space is the scene of intensive experiences of communication and information technologies sensitive to the Internet of Things context, of urban management and social action driven by data.");
+    if(message.indexOf("location") > -1) {
+      let preciseLocationPermission = assistant.SupportedPermissions.NAME;
+      assistant.askForPermissions('To address you by name and know your location',[preciseLocationPermission]);
+      //assistant.ask(assistant.getDeviceLocation().coordinates.latitude);
+      //let displayName = app.getUserName().displayName;
     }else
-    //
-    // if(message.indexOf(song) > -1) {
-    //   sendResponse('<speak> playing audio news <audio src="https://leafarmd.000webhostapp.com/news2.mp3"></audio></speak>')
-    // }else
-    //
-    // //Sessão de eventos
-    // if(message.indexOf(events) > -1) {
-    //     if(message.indexOf(building) > -1) {
-    //           if(message.indexOf(p30) > -1) {
-    //             sendResponse("<speak>There will be an event called Electrical Engineering, on October 16, 2017, at 5:30 p.m. in room 201 of building 30, second floor.</speak>");
-    //           }else if(message.indexOf(p32) > -1) {
-    //             sendResponse("<speak>There will be an event called Smart Cities and IoT, on October 16, 2017, at 6:00 pm in the ground floor auditorium of building 32.</speak>");
-    //           }else
-    //             sendResponse("<speak>No events were identified in the building mentioned.</speak>");
-    //     }else
-    //       sendResponse("<speak>There will be an event called Entrepreneurship in the academic world, on October 16, 2017, at 7:00 pm in the auditorium of building 15, second floor. There will be an event called Legislation and Philosophy, on October 16, 2017, at 4:00 p.m. in Room 303 of Building 11 on the third floor.</speak>");
-    // }else
 
-    // //BIBLIOTECA
-    // if(message.indexOf(title) > -1) {
-    //     if(message.indexOf(book1) > -1) { //book1 = "designing interfaces";
-    //       sendResponse("<speak>The book designing interfaces is available for lease for 7 days. Its location is on the 3rd floor, shelf number 16.</speak>");
-    //     }else if(message.indexOf(book2) > -1) { //book2 = "scrum";
-    //       sendResponse("<speak>This book is not available. Borrowed until Oct 16, 2017 22:50.</speak>");
-    // }else
-    //
-    // if(message.indexOf(keyWord) > -1) {
-    //   sendResponse("<speak>The books: Software development rhythms, Software development failures, Running an agile software development project and Using aspect-oriented programming for trustworthy software development are the results returned from your search.</speak>");
-    // }
+    if(message.indexOf(next) > -1) {
+      if(pos == 7){
+        pos = 0
+      } else pos++;
 
-    //Função de envio de mensagem
+      setMessage(newsArr[pos]);
+    }else
+
+    if(message.indexOf(back) > -1) {
+      if(pos == 0){
+        pos = 7
+      } else pos--;
+      setMessage(newsArr[pos]);
+    }else
+
+    if(message.indexOf(ubilab) > -1) {
+      sendResponse("Ubilab is a place for academic research which connects theoretical references with their practical application. The lab was created in the Graduate Program of Communications of the Pontifical Catholic University of Rio Grande do Sul (PUCRS) to create a multidisciplinary dialogue to research new perspectives of the Information Society.");
+    }else
+
+    if(message.indexOf(headlines) > -1) {
+      sendResponse('<speak> playing audio news <audio src="https://leafarmd.000webhostapp.com/news2.mp3"></audio></speak>')
+    }else{
+      setMessage(message);
+    }
+
+
+    //news sections
+
+    function setMessage(message){
+      if(message.indexOf(economy) > -1) {
+        pos = 2;
+        title = "these are the latest news for economy: ";
+        parseFromRSS('http://g1.globo.com/dynamo/economia/rss2.xml');
+      }else
+
+      if(message.indexOf(education) > -1) {
+        pos = 3
+        title = "these are the latest news for education: ";
+        parseFromRSS('http://g1.globo.com/dynamo/educacao/rss2.xml');
+      }else
+
+      if(message.indexOf(music) > -1) {
+        pos = 4;
+        title = "these are the latest news for music: ";
+        parseFromRSS('http://g1.globo.com/dynamo/musica/rss2.xml');
+      }else
+
+      if(message.indexOf(science) > -1) {
+        pos = 1;
+        title = "these are the latest news for science: ";
+        parseFromRSS('http://g1.globo.com/dynamo/ciencia-e-saude/rss2.xml');
+      }else
+
+      if(message.indexOf(politics) > -1) {
+        pos = 5;
+        title = "these are the latest news for politics: ";
+        parseFromRSS('http://g1.globo.com/dynamo/politica/mensalao/rss2.xml');
+      }else
+
+      if(message.indexOf(technology) > -1) {
+        pos = 6;
+        title = "these are the latest news for technology: ";
+        parseFromRSS('http://g1.globo.com/dynamo/tecnologia/rss2.xml');
+      }else
+
+      if(message.indexOf(sports) > -1) {
+        pos = 7;
+        title = "these are the latest news for sports ";
+        parseFromRSS('http://globoesporte.globo.com/servico/semantica/editorias/plantao/feed.rss');
+      }else
+
+      if(message.indexOf(sp) > -1) {
+        title = "these are the latest news for Sao Paulo: ";
+        parseFromRSS('http://g1.globo.com/dynamo/sao-paulo/rss2.xml');
+      }else
+
+      if(message.indexOf(rj) > -1) {
+        title = "these are the latest news for Rio  de Janeiro: ";
+        parseFromRSS('http://g1.globo.com/dynamo/rio-de-janeiro/rss2.xml');
+      }else
+
+      if(message.indexOf(rs) > -1) {
+        title = "these are the latest news for Rio Grande do Sul: ";
+        parseFromRSS('http://g1.globo.com/dynamo/rs/rio-grande-do-sul/rss2.xml');
+      }else
+
+      if(message.indexOf(news) > -1) {
+        pos = 0;
+        title = "these are the latest news: ";
+        parseFromRSS('http://g1.globo.com/dynamo/rss2.xml');
+      }else{
+        sendResponse("<speak>sorry, i can't help you with that, but you can ask me the news or about sports.</speak>");
+      }
+    }
+
+
+
+    function parseFromRSS(url){
+      var parser = require('rss-parser');
+      parser.parseURL(url, function(err, parsed) {
+        var speechNews = "";
+        for(var i = 0; i < 4;i++){
+        speechNews = parsed.feed.entries[i].title + ".\n" + speechNews;
+        }
+        sendResponse("<speak>" + title + "<break time='1s'/>" + speechNews + "</speak>");
+      });
+    }
+
     function sendResponse(msg) {
       assistant.ask(msg);
     }

@@ -24,8 +24,8 @@ restService.post('/echo', function(req, res) {
   var smartcity = "smart city";
 
   //prédios
-  var p32 = "thirty-two";
-  var p30 = "thirty";
+  var p32 = "32";
+  var p30 = "30";
 
   //biblioteca
   // var title = "title";

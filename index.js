@@ -66,7 +66,7 @@ restService.post('/echo', function(req, res) {
 
     if(message.indexOf(keyWord) > -1) {
       sendResponse("<speak>The books: Software development rhythms, Software development failures, Running an agile software development project and Using aspect-oriented programming for trustworthy software development are the results returned from your search.</speak>");
-    }else
+    }
 
     //Função de envio de mensagem
     function sendResponse(msg) {

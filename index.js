@@ -30,7 +30,7 @@ restService.post('/echo', function(req, res) {
   //biblioteca
   var book = "book";
   var book1 = "designing interfaces";
-  var book2 = "scrum";
+  var book2 = "agile";
   var keyword = "software development";
 
     //EVENTOS
@@ -54,7 +54,8 @@ restService.post('/echo', function(req, res) {
         }else
         if(message.indexOf(keyword) > -1) {
           sendResponse("<speak>The books: Software development rhythms, Software development failures, Running an agile software development project and Using aspect-oriented programming for trustworthy software development are the results returned from your search.</speak>");
-        }
+        }else
+          sendResponse("<speak>No books were identified with this title.</speak>");
     }else
 
     if(message.indexOf(events) > -1) {

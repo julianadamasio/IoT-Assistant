@@ -28,10 +28,10 @@ restService.post('/echo', function(req, res) {
   var p30 = "30";
 
   //biblioteca
-  // var title = "title";
-  // var book1 = "designing interfaces";
-  // var book2 = "scrum";
-  // var keyWord = "software development";
+  var book = "book";
+  var book1 = "designing interfaces";
+  var book2 = "scrum";
+  var keyWord = "software development";
 
     //EVENTOS
     if(message.indexOf(smartcity) > -1) {
@@ -43,6 +43,19 @@ restService.post('/echo', function(req, res) {
     // }else
     //
     // //Sessão de eventos
+
+    // //BIBLIOTECA
+    if(message.indexOf(book) > -1) {
+        if(message.indexOf(book1) > -1) { //book1 = "designing interfaces";
+          sendResponse("<speak>The book designing interfaces is available for lease for 7 days. Its location is on the 3rd floor, shelf number 16.</speak>");
+        }else if(message.indexOf(book2) > -1) { //book2 = "scrum";
+          sendResponse("<speak>This book is not available. Borrowed until Oct 16, 2017 22:50.</speak>");
+    }else
+
+    if(message.indexOf(keyWord) > -1) {
+      sendResponse("<speak>The books: Software development rhythms, Software development failures, Running an agile software development project and Using aspect-oriented programming for trustworthy software development are the results returned from your search.</speak>");
+    }else
+
     if(message.indexOf(events) > -1) {
         if(message.indexOf(building) > -1) {
               if(message.indexOf(p30) > -1) {

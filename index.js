@@ -53,6 +53,8 @@ restService.post('/echo', function(req, res) {
                 sendResponse("<speak>No events were identified in the building mentioned.</speak>");
         }else
           sendResponse("<speak>There will be an event called Entrepreneurship in the academic world, on October 16, 2017, at 7:00 pm in the auditorium of building 15, second floor. There will be an event called Legislation and Philosophy, on October 16, 2017, at 4:00 p.m. in Room 303 of Building 11 on the third floor.</speak>");
+    }else {
+      sendResponse("sorry, i cant help you with that.");
     }
 
     function sendResponse(msg) {
